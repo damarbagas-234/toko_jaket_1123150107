@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uts_1123150059/features/auth/presentation/pages/login_page.dart';
-import 'package:uts_1123150059/features/auth/presentation/pages/verify_email_page.dart';
-import 'package:uts_1123150059/features/auth/presentation/providers/auth_provider.dart';
+import 'package:toko_jaket_1123150107/features/auth/presentation/pages/login_page.dart';
+import 'package:toko_jaket_1123150107/features/auth/presentation/pages/verify_email_page.dart';
+import 'package:toko_jaket_1123150107/features/auth/presentation/providers/auth_provider.dart';
+
 
 class AuthGuard extends StatelessWidget {
   final Widget child;
