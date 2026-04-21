@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "356644737981",
+    "project_id": "toko-jaket",
+    "storage_bucket": "toko-jaket.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356644737981:android:0ef19e4bd8166e929ff8d4",
+        "android_client_info": {
+          "package_name": "com.example.toko_jaket_1123150107"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCr-qeWEFWDwWEfvpEoCqhW89KOWIZTxe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
