@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toko_jaket_1123150107/core/constants/app_colors.dart';
 
 enum ButtonVariant { primary, outlined, text }
 
@@ -37,7 +38,7 @@ class CustomButton extends StatelessWidget {
                 label,
                 style: const TextStyle(
                   fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],
@@ -45,32 +46,36 @@ class CustomButton extends StatelessWidget {
 
     return SizedBox(
       width: double.infinity,
-      height: 52,
+      height: 56,
       child: switch (variant) {
         ButtonVariant.primary => ElevatedButton(
           onPressed: isLoading ? null : onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF1565C0),
+            backgroundColor: AppColors.primary,
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
             ),
-            elevation: 2,
+            elevation: 0,
           ),
           child: child,
         ),
         ButtonVariant.outlined => OutlinedButton(
           onPressed: isLoading ? null : onPressed,
           style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Color(0xFF1565C0), width: 1.5),
+            side: const BorderSide(color: AppColors.primary, width: 1.5),
+            foregroundColor: AppColors.primary,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(16),
             ),
           ),
           child: child,
         ),
         ButtonVariant.text => TextButton(
           onPressed: isLoading ? null : onPressed,
+          style: TextButton.styleFrom(
+            foregroundColor: AppColors.primary,
+          ),
           child: child,
         ),
       },
