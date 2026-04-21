@@ -1,3 +1,4 @@
+import 'package:toko_jaket_1123150107/core/constants/app_colors.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -157,9 +158,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: const Text(
                           'Masuk',
                           style: TextStyle(
-                            color: Color(0xFF1565C0),
-                            fontWeight: FontWeight.bold,
-                          ),
+                          color: AppColors.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
                         ),
                       ),
                     ],
