@@ -1,16 +1,12 @@
-# toko_jaket_1123150107
+# Toko Jaket
 
-A new Flutter project.
+## BioData
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+| Keterangan       | Data |
+|------------------|------|
+| Nama             | Muhammad Damar Bagas |
+| NIM              | 11231500107 |
+| Kelas            | TI 23 SE 2 |
+| Prodi      | Teknik Informatika |
+| Konsentrasi      | Software Engineer |
+| Link Youtube  | [Klik](https://youtu.be/690s7cxgKmI) |
