@@ -44,7 +44,7 @@ class CustomTextField extends StatelessWidget {
           validator: validator,
           keyboardType: keyboardType,
           enabled: enabled,
-          style: const TextStyle(fontSize: 15),
+          style: const TextStyle(fontSize: 15, color: AppColors.textPrimary),
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 14),
