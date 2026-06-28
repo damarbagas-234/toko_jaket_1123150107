@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toko_jaket_1123150107/core/constants/app_strings.dart';
 import 'package:toko_jaket_1123150107/core/routes/app_router.dart';
-import 'package:toko_jaket_1123150107/core/services/secure_storage.dart';
+import 'package:toko_jaket_1123150107/core/services/global_institute_pay_service.dart';
 import 'package:toko_jaket_1123150107/core/theme/app_theme.dart';
 import 'package:toko_jaket_1123150107/features/auth/presentation/providers/auth_provider.dart';
 import 'package:toko_jaket_1123150107/features/cart/presentation/providers/cart_provider.dart';
-import 'package:toko_jaket_1123150107/features/cart/presentation/providers/checkout_provider.dart';
 import 'package:toko_jaket_1123150107/features/dashboard/presentation/providers/product_provider.dart';
+import 'package:toko_jaket_1123150107/features/order/presentation/providers/order_provider.dart';
 import 'firebase_options.dart';
 
 
@@ -18,6 +18,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await GlobalInstitutePayService().init();
 
   runApp(
     MultiProvider(
@@ -25,7 +26,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
-        ChangeNotifierProvider(create: (_) => CheckoutProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
       ],
       child: const MyApp(),
     ),
@@ -39,41 +40,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title:                  AppStrings.appName,
+      title:                      AppStrings.appName,
       debugShowCheckedModeBanner: false,
-      theme:                  AppTheme.light,
-      initialRoute:           AppRouter.login,
-      routes:                 AppRouter.routes,
+      theme:                      AppTheme.light,
+      initialRoute:               AppRouter.splash,
+      routes:                     AppRouter.routes,
     );
   }
-}
-
-
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
-
-  @override
-  State<SplashPage> createState() => _SplashPageState();
-}
-
-class _SplashPageState extends State<SplashPage> {
-  @override
-  void initState() {
-    super.initState();
-    _checkAuth();
-  }
-
-  Future<void> _checkAuth() async {
-    await Future.delayed(const Duration(seconds: 2)); // Animasi splash
-    if (!mounted) return;
-
-    final token = await SecureStorage.getToken();
-    final route = token != null ? AppRouter.dashboard : AppRouter.login;
-    Navigator.pushReplacementNamed(context, route);
-  }
-
-  @override
-  Widget build(BuildContext context) => const Scaffold(
-    body: Center(child: CircularProgressIndicator()),
-  );
 }
