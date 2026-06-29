@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toko_jaket_1123150107/core/constants/app_colors.dart';
+import 'package:toko_jaket_1123150107/features/auth/presentation/providers/auth_provider.dart';
 import 'package:toko_jaket_1123150107/features/order/data/models/order_model.dart';
 
 class OrderSuccessPage extends StatelessWidget {
@@ -22,7 +24,7 @@ class OrderSuccessPage extends StatelessWidget {
   String _paymentMethodLabel(String method) {
     switch (method) {
       case 'global_institute_pay':
-        return 'Global Institute Pay';
+        return 'E Uang';
       case 'bank_transfer':
         return 'Transfer Bank';
       case 'virtual_account':
@@ -200,7 +202,13 @@ class OrderSuccessPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    // Restore session Firebase sebelum masuk halaman
+                    // yang dijaga AuthGuard (/dashboard).
+                    await context
+                        .read<AuthProvider>()
+                        .restoreSession();
+                    if (!context.mounted) return;
                     Navigator.pushNamedAndRemoveUntil(
                       context,
                       '/dashboard',
