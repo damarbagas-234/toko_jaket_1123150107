@@ -15,13 +15,15 @@ class ProductModel extends Equatable {
     required this.category,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-    id: (json['ID'] as num?)?.toInt() ?? 0,
-    name:     json['name']      as String,
-    price:    (json['price'] as num).toDouble(),
-    imageUrl: json['image_url'] as String,
-    category: json['category'] as String,
-  );
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    // Support berbagai format key dari backend
+    final id       = (json['ID'] ?? json['id'] ?? json['product_id'] ?? 0) as int;
+    final name     = (json['name'] ?? json['product_name'] ?? '') as String;
+    final price    = ((json['price'] ?? 0) as num).toDouble();
+    final imageUrl = (json['image_url'] ?? json['imageUrl'] ?? json['image'] ?? '') as String;
+    final category = (json['category'] ?? json['category_name'] ?? '') as String;
+    return ProductModel(id: id, name: name, price: price, imageUrl: imageUrl, category: category);
+  }
 
   @override
   List<Object?> get props => [id, name, price, imageUrl, category];

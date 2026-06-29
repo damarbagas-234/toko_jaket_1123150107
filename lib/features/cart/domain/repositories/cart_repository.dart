@@ -1,7 +1,9 @@
-import 'package:toko_jaket_1123150107/features/cart/data/models/cart_item_model.dart';
+import 'package:toko_jaket_1123150107/features/cart/data/models/cart_model.dart';
 
 abstract class CartRepository {
-  Future<void> saveCart(List<CartItem> items);
-  Future<List<CartItem>> loadCart();
+  Future<CartModel> getCart();
+  Future<void> addToCart(int productId, int quantity);
+  Future<void> updateCartItem(int cartItemId, int quantity);
+  Future<void> removeCartItem(int cartItemId);
   Future<void> clearCart();
 }

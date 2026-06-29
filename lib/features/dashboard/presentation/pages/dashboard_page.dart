@@ -198,21 +198,21 @@ class _DashboardPageState extends State<DashboardPage> {
                             ),
                             const SizedBox(height: 12),
                             ElevatedButton(
-                              onPressed: () {
-                                context.read<CartProvider>().addItem(
-                                      p.id.toString(),
-                                      p.name,
-                                      p.price,
-                                      imageUrl: p.imageUrl,
-                                    );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('${p.name} ditambahkan'),
-                                    behavior: SnackBarBehavior.floating,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                                    backgroundColor: AppColors.primary,
-                                  ),
+                              onPressed: () async {
+                                final success = await context.read<CartProvider>().addToCart(
+                                  p.id,
+                                  1,
                                 );
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(success ? '${p.name} ditambahkan ke keranjang' : 'Gagal menambahkan ke keranjang'),
+                                      behavior: SnackBarBehavior.floating,
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                                      backgroundColor: success ? AppColors.primary : Colors.red,
+                                    ),
+                                  );
+                                }
                               },
                               style: ElevatedButton.styleFrom(
                                 minimumSize: const Size(double.infinity, 36),

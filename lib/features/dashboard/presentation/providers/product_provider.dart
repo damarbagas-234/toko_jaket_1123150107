@@ -24,12 +24,26 @@ class ProductProvider extends ChangeNotifier{
     try {
       final response = await DioClient.instance.get(AppConstants.products);
 
+      debugPrint('[ProductProvider] response: ${response.data}');
+
       // Backend response: { "data": [ {...}, {...} ] }
-      final List<dynamic> data = response.data['data'];
-      _products = data.map((e) => ProductModel.fromJson(e)).toList();
-      _status   = ProductStatus.loaded;
+      final rawData = response.data;
+      final List<dynamic>? data = rawData is Map ? rawData['data'] as List<dynamic>? : null;
+
+      if (data == null) {
+        _error  = 'Format respons tidak dikenali';
+        _status = ProductStatus.error;
+      } else {
+        _products = data.map((e) => ProductModel.fromJson(e as Map<String, dynamic>)).toList();
+        _status   = ProductStatus.loaded;
+      }
     } on DioException catch (e) {
-      _error  = e.response?.data['message'] ?? 'Gagal memuat produk';
+      debugPrint('[ProductProvider] DioException: ${e.response?.statusCode} ${e.response?.data}');
+      _error  = (e.response?.data is Map ? e.response?.data['message'] : null) ?? 'Gagal memuat produk (${e.response?.statusCode})';
+      _status = ProductStatus.error;
+    } catch (e) {
+      debugPrint('[ProductProvider] Error: $e');
+      _error  = 'Terjadi kesalahan: $e';
       _status = ProductStatus.error;
     }
 

@@ -166,6 +166,29 @@ class AuthProvider extends ChangeNotifier {
     await _firebaseUser?.sendEmailVerification();
   }
 
+  // ─── Restore session dari storage (tanpa re-login) ────────
+  /// Dipanggil saat navigasi langsung ke halaman yang dijaga AuthGuard
+  /// tanpa melalui SplashPage, contoh: kembali dari deeplink payment.
+  Future<void> restoreSession() async {
+    if (_status == AuthStatus.authenticated) return; // sudah login
+    final token = await SecureStorage.getToken();
+    if (token == null) return; // tidak ada token → tidak bisa restore
+
+    // authStateChanges().first menunggu Firebase selesai restore session,
+    // lebih andal dari currentUser yang bisa null di cold-start deeplink.
+    final firebaseUser = await _auth
+        .authStateChanges()
+        .first
+        .timeout(const Duration(seconds: 5), onTimeout: () => null);
+
+    if (firebaseUser != null) {
+      _firebaseUser = firebaseUser;
+      _backendToken = token;
+      _status = AuthStatus.authenticated;
+      notifyListeners();
+    }
+  }
+
   // ─── Cek status verifikasi email (polling) ────────────────
   Future<bool> checkEmailVerified() async {
     await _firebaseUser?.reload(); // Refresh data user dari Firebase
