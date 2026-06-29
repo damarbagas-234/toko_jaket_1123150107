@@ -154,6 +154,18 @@ State management menggunakan **Provider** (`ChangeNotifier`). Navigasi dikelola 
 
 ## Screenshot Aplikasi
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9467d43f-f825-4663-a54c-12de21218f07" width="250" />
+  <img src="https://github.com/user-attachments/assets/2acbc03f-c272-471c-8af2-9c90b3dcc97b" width="250" />
+  <img src="https://github.com/user-attachments/assets/dbbf97ae-04ad-47be-bc7f-0cb6f258edfb" width="250" />
+  <img src="https://github.com/user-attachments/assets/56bd1ab6-bb20-4d26-82f7-0be269364368" width="250" />
+  <img src="https://github.com/user-attachments/assets/4ea2e1af-07d3-40e1-840c-9beb5f0e6790" width="250" />
+</p>
+
+
+
+
+
 
 
 ---
