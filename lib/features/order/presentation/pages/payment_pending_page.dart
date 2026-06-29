@@ -180,11 +180,19 @@ class _PaymentPendingPageState extends State<PaymentPendingPage>
   void _onPaymentSuccess() {
     _log(' _onPaymentSuccess dipanggil — hentikan polling & navigasi');
     context.read<OrderProvider>().stopPaymentPolling();
+
+    final order = context.read<OrderProvider>().lastOrder ?? widget.order;
+
+    // Langsung ke /order-success — bypass /dashboard dan AuthGuard.
+    // AuthGuard menjadi masalah saat cold-start deeplink karena Firebase
+    // belum selesai restore session sehingga AuthProvider.status == initial.
+    // OrderSuccessPage tidak butuh auth; tombol "Kembali ke Beranda" di sana
+    // yang akan memanggil restoreSession() sebelum navigasi ke /dashboard.
     Navigator.pushNamedAndRemoveUntil(
       context,
       '/order-success',
-      (route) => route.settings.name == '/dashboard',
-      arguments: context.read<OrderProvider>().lastOrder ?? widget.order,
+      (route) => false, // bersihkan seluruh stack lama
+      arguments: order,
     );
   }
 
@@ -610,7 +618,7 @@ class _GlobalInstitutePayBody extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const Text(
-            'Bayar dengan Global Institute Pay',
+            'Bayar dengan E Uang',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 20,
