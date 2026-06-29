@@ -1,3 +1,4 @@
+
 import 'dart:async';
 
 import 'package:app_links/app_links.dart';
@@ -138,7 +139,7 @@ class GlobalInstitutePayService {
     required double amount,
     String? description,
   }) {
-    const scheme = 'dompetkampus';
+    const scheme = 'euang';
     const host = 'pay';
     final desc = (description != null && description.isNotEmpty)
         ? description
@@ -146,6 +147,7 @@ class GlobalInstitutePayService {
     const callbackUrl = 'tokojaket://payment-callback';
 
     _log(_tag, ' Membangun deeplink URL:');
+    _log(_tag, 'scheme      : $scheme://$host');
     _log(_tag, 'merchant_id : MCH_TOKO_JAKET');
     _log(_tag, 'merchant_name: Toko Jaket');
     _log(_tag, 'amount : ${amount.toInt()}');
