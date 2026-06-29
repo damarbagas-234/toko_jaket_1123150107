@@ -29,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <!-- Deeplink callback dari Dompet Kampus Global (tokojaket://payment-callback) -->
-            <intent-filter android:autoVerify="true">
+            <intent-filter android:autoVerify="false">
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
@@ -52,10 +52,10 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
-        <!-- Izinkan query ke Dompet Kampus Global untuk canLaunchUrl -->
+        <!-- Izinkan query ke euang Global untuk canLaunchUrl -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>
-            <data android:scheme="dompetkampus"/>
+            <data android:scheme="euang"/>
         </intent>
     </queries>
 </manifest>
