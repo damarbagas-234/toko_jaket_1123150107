@@ -1,7 +1,5 @@
 class AppConstants {
-  static const String baseUrl = 'http://172.17.203.167:8080/v1';
-  // static const String baseUrl = 'http://192.168.100.7:8080/v1';
-  // static const String baseUrl = 'http://103.94.133.254:8080/v1';
+  static const String baseUrl = 'http://10.56.175.167:8080/v1';
 
   // Auth endpoints
   static const String verifyToken = '/auth/verify-token';
